@@ -562,7 +562,7 @@ static void coap_HandleRequest(coap_context_t * ctx,
 {
     char requestPath[256] = {0};
     char requestQuery[256] = {0};
-    int observe;
+    int observe = -1;
     AwaContentType contentType = AwaContentType_None;
     coap_opt_iterator_t opt_iter;
     coap_opt_filter_t filter;
@@ -615,10 +615,6 @@ static void coap_HandleRequest(coap_context_t * ctx,
         if (option != NULL)
         {
             observe = coap_decode_var_bytes(COAP_OPT_VALUE(option), COAP_OPT_LENGTH(option));
-        }
-        else
-        {
-            observe = -1;
         }
     }
     else
